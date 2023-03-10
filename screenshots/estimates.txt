@@ -1,0 +1,19 @@
+Minimum RTO for a single AZ outage: 1 min
+00:00 - Problem happens (0 minutes)
+00:01 - With enabled Multi-AZ setup, System automatic switch to a standby replica in another Availability Zone (1 minutes)
+
+Minimum RTO for a single region outage: 26 min
+00:00 - Problem happens (0 minutes)
+00:05 - Time before the alert triggers (5 minutes)
+00:06 - Alert triggers on-all staff (1 minute)
+00:16 - On-call staff may need to get out of bed, get to computer, log in, log onto VPN (10 minutes)
+00:26 - On-call staff recreate system (using terraform code), DB already had multiple region setup and DB stanby will be promote  (10 minutes)
+00:26 - Staff starts diagnosing issue (10 minutes, and not include in RTO)
+00:41 - Root cause is discovered (15 minutes, and not include in RTO)
+00:46 - Remediation started (5 minutes, and not include in RTO)
+00:56 - Remediation completed (10 minutes, and not include in RTO)
+
+Minimum RPO for a single AZ outage: 0 min
+	With multiple AZ setup in DB, I think we will no loss of data
+Minimum RPO for a single region outage: 0 min
+	With setup read replica, no loss data for this.
